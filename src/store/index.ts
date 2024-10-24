@@ -1,11 +1,12 @@
-import { createStore, combineReducers } from 'redux';
-import { counterReducer } from './reducer';
+import { combineReducers } from 'redux'
+import { counterReducer } from './reducer'
+import { configureStore } from '@reduxjs/toolkit'
 
 const rootReducer = combineReducers({
   counter: counterReducer,
   // остальные редьюсеры
 })
 
-const store = createStore(rootReducer);
-
-export default store;
+export const store = configureStore({
+  reducer: rootReducer,
+})
