@@ -14,8 +14,7 @@ type FavouriteButton = {
 };
 
 const FavouriteButton: React.FC<FavouriteButton> = (props) => {
-  const { format, helpRequest, favouriteRequestsIDs, isLoading, setIsLoading } =
-    props;
+  const { format, helpRequest, favouriteRequestsIDs, isLoading, setIsLoading } = props;
   const { handleAddToFavourites, handleRemoveFavourite } = useFavourites();
   const isFavourite = favouriteRequestsIDs.includes(helpRequest.id);
 
@@ -45,7 +44,7 @@ const FavouriteButton: React.FC<FavouriteButton> = (props) => {
   const ariaLabel = `${action}`;
 
   return (
-    <Box>
+    <Box sx={{ minWidth: 'max-content' }}>
       {format === 'vertical' ? (
         <FavouriteIconBtn
           handleToggleFavourite={handleToggleFavourite}
