@@ -3,7 +3,8 @@ import { ReactSVG } from 'react-svg';
 import { useBreakpointOverlap } from '../../hooks/useBreakpointOverlap';
 
 export function Logo() {
-  const { breakpointOverlap } = useBreakpointOverlap();
+  const { isBreakpointOverlap } = useBreakpointOverlap();
+
   return (
     <Box display={'flex'} justifyContent={'flex-start'} alignItems={'center'}>
       <ReactSVG
@@ -13,7 +14,7 @@ export function Logo() {
           svg.removeAttribute('height');
         }}
         style={{
-          width: `${breakpointOverlap ? 'calc(12rem ' : 'calc(31.3rem + 0.11*(100vw - 192rem))'}`,
+          width: `${isBreakpointOverlap ? 'calc(12rem ' : 'calc(31.3rem + 0.11*(100vw - 192rem))'}`,
         }}
       />
     </Box>
