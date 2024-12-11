@@ -1,16 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMode } from '../theme';
 
-export function useBreakpointOverlap() {
+export function useBreakpointOverlap(breakpointOverlapValue?: number) {
   const [theme] = useMode();
-  const [breakpointOverlap, setBreakpointOverlap] = useState<boolean>(window.innerWidth <= theme.breakpoints.values.sm);
-  function checkScreenWidth() {
-    if (window.innerWidth <= theme.breakpoints.values.sm) {
-      setBreakpointOverlap(true);
-    } else {
-      setBreakpointOverlap(false);
-    }
-  }
-  window.addEventListener('resize', checkScreenWidth);
-  return { breakpointOverlap };
+  const breakpointOverlap = breakpointOverlapValue ? breakpointOverlapValue : theme.breakpoints.values.sm;
+
+  const [isBreakpointOverlap, setIsBreakpointOverlap] = useState<boolean>(window.innerWidth <= breakpointOverlap);
+  useEffect(() => {
+    const checkScreenWidth = () => {
+      setIsBreakpointOverlap(window.innerWidth <= breakpointOverlap);
+    };
+
+    window.addEventListener('resize', checkScreenWidth);
+
+    return () => {
+      window.removeEventListener('resize', checkScreenWidth);
+    };
+  }, [breakpointOverlap]);
+  return { isBreakpointOverlap };
 }
