@@ -1,9 +1,8 @@
-import { Star, StarBorder } from '@mui/icons-material';
-import { Box } from '@mui/material';
+import { Tooltip } from '@mui/material';
 import { HelpRequest } from '../../types/HelpRequest';
 import { useFavourites } from '../../hooks/useFavourites';
+import { useRef, useState } from 'react';
 import FavouriteIconBtn from './elements/FavouriteIconBtn';
-import FavouriteIconBtnWithText from './elements/FavouriteIconBtnWithText';
 
 type FavouriteButton = {
   format: string;
@@ -14,8 +13,7 @@ type FavouriteButton = {
 };
 
 const FavouriteButton: React.FC<FavouriteButton> = (props) => {
-  const { format, helpRequest, favouriteRequestsIDs, isLoading, setIsLoading } =
-    props;
+  const { helpRequest, favouriteRequestsIDs, isLoading, setIsLoading } = props;
   const { handleAddToFavourites, handleRemoveFavourite } = useFavourites();
   const isFavourite = favouriteRequestsIDs.includes(helpRequest.id);
 
@@ -34,35 +32,22 @@ const FavouriteButton: React.FC<FavouriteButton> = (props) => {
     }
   };
 
-  const iconColor = isFavourite ? '#FFA500' : 'inherit';
-  const favouriteIcon = isFavourite ? (
-    <Star sx={{ color: iconColor, '&:hover': { color: '#FF7F00' } }} />
-  ) : (
-    <StarBorder sx={{ color: iconColor, '&:hover': { color: '#FF7F00' } }} />
-  );
   const action = isFavourite ? 'Удалить из избранного' : 'В избранное';
   const buttonText = `${action}`;
   const ariaLabel = `${action}`;
+  const [isShow, setIsShow] = useState<boolean>(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   return (
-    <Box>
-      {format === 'vertical' ? (
-        <FavouriteIconBtn
-          handleToggleFavourite={handleToggleFavourite}
-          favouriteIcon={favouriteIcon}
-          ariaLabel={ariaLabel}
-          isLoading={isLoading}
-        />
-      ) : (
-        <FavouriteIconBtnWithText
-          handleToggleFavourite={handleToggleFavourite}
-          favouriteIcon={favouriteIcon}
-          ariaLabel={ariaLabel}
-          isLoading={isLoading}
-          buttonText={buttonText}
-        />
-      )}
-    </Box>
+    <Tooltip title={buttonText} open={isShow} onClose={() => setIsShow(false)} onOpen={() => setIsShow(true)}>
+      <FavouriteIconBtn
+        handleToggleFavourite={handleToggleFavourite}
+        ariaLabel={ariaLabel}
+        isLoading={isLoading}
+        isFavourite={isFavourite}
+        ref={ref}
+      />
+    </Tooltip>
   );
 };
 

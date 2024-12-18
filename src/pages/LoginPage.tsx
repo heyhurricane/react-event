@@ -12,7 +12,7 @@ import { useBreakpointOverlap } from '../hooks/useBreakpointOverlap';
 
 const LoginPage = () => {
   const isAuthenticated = useAppSelector((store) => store.auth.isAuthenticated);
-  const { breakpointOverlap } = useBreakpointOverlap();
+  const { isBreakpointOverlap } = useBreakpointOverlap();
   const [theme] = useMode();
   const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ const LoginPage = () => {
           }}
         />
       </Box>
-      {breakpointOverlap ? <TestingProfilesSM /> : <TestingProfiles />}
+      {isBreakpointOverlap ? <TestingProfilesSM /> : <TestingProfiles />}
     </Box>
   );
 };

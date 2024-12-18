@@ -1,6 +1,6 @@
 export interface IFavouriteButton {
-  handleToggleFavourite: () => Promise<void>, 
-  favouriteIcon: JSX.Element,
-  ariaLabel: string, 
-  isLoading: boolean
+  handleToggleFavourite: () => Promise<void>;
+  isFavourite: boolean;
+  ariaLabel: string;
+  isLoading: boolean;
 }
