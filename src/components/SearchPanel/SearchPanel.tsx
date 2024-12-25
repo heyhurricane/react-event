@@ -3,6 +3,7 @@ import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { debouncedFunction } from '../../utils/filterUtils';
 // styles
 import { Box, InputBase, Paper, Stack, Typography } from '@mui/material';
+import { useMode } from '../../theme';
 import SearchIcon from '@mui/icons-material/Search';
 
 type SearchProps = {
@@ -12,6 +13,7 @@ type SearchProps = {
 
 const SearchPanel: FC<SearchProps> = ({searchTerm, setSearchTerm}) => {
   const [inputValue, setInputValue] = useState(searchTerm);
+  const [theme] = useMode();
 
   const handleSearch = useCallback((value: string) => {
     setSearchTerm(value);
@@ -26,14 +28,37 @@ const SearchPanel: FC<SearchProps> = ({searchTerm, setSearchTerm}) => {
   };
 
   useEffect(() => {
-    // todo: fix this warning - functional works as expected
+    // todo: fix the warning - functionality works as expected
     debouncedSearch.current = debouncedFunction(handleSearch, 250);
   }, [handleSearch]);
 
   return (
-    <Paper sx={{ backgroundColor: 'white', padding: '0 3.6rem' }}>
-      <Stack sx={{ padding: '2rem 0', mb: '1.6rem' }} gap={'2rem'}>
-        <Typography variant='h6' width='fit-content'>
+    <Paper sx={{
+      width: '100%'
+    }}>
+      <Stack 
+        sx={{ 
+          backgroundColor: 'white',
+          gap: '2rem',
+          padding: '2rem',
+          mb: '1.6rem',
+          [`@media (max-width:${theme.breakpoints.values.md}px)`]: {
+            padding: '1.6rem',
+            mb: '0'
+          }
+        }}
+      >
+        <Typography 
+          variant='h6'
+          width='fit-content'
+          sx={{
+            display: 'flex',
+            width: 'fit-content',
+            [`@media (max-width:${theme.breakpoints.values.md}px)`]: {
+              display: 'none',
+            }
+          }}
+        >
           Найти запрос
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', borderBottom: '1px solid gray' }}>

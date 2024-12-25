@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 // components
 import StandardCheckboxes from './StandardCheckboxes';
 import AccordionCheckboxes from './AccordionCheckboxes';
@@ -9,9 +9,10 @@ import { filterOptions } from '../../const/filterOptions';
 import { FilterProps } from '../../types/IFilterOption';
 // styles
 import { Box, Button, Paper, Typography } from '@mui/material';
+import { useMode } from '../../theme';
 
-const Filters: React.FC<FilterProps> = ({ selectedOptions, setSelectedOptions }) => {
-  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+const Filters: React.FC<FilterProps> = ({ selectedOptions, selectedDate, setSelectedOptions, setSelectedDate }) => {
+  const [theme] = useMode();
 
   // Toggle checkbox filter
   const handleToggle = (props: string): void => {
@@ -55,7 +56,15 @@ const Filters: React.FC<FilterProps> = ({ selectedOptions, setSelectedOptions })
   }, [selectedDate]);
 
   return (
-    <Paper sx={{ backgroundColor: 'white', padding: '0 2rem', height: 'fit-content', width: '320px'}}>
+    <Paper sx={{ 
+      backgroundColor: 'white', 
+      padding: '0 2rem', 
+      height: 'fit-content', 
+      width: '320px',
+      [`@media (max-width:${theme.breakpoints.values.md}px)`]: {
+        boxShadow: 'none',
+      }
+    }}>
       <Box sx={{ padding: '2rem 0' }}>
         <Typography variant='h6' width='fit-content'>
           Фильтрация

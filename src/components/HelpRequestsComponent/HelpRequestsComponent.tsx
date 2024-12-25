@@ -1,5 +1,5 @@
 import { Box, Typography, Pagination } from '@mui/material';
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useMemo, useState } from 'react';
 import CardList from '../CardList/CardList';
 import { HelpRequest } from '../../types/HelpRequest';
 import MapWrapper from '../Map/MapWrapper';
@@ -21,7 +21,8 @@ const HelpRequestsComponent: FC<RequestsProps> = ({currentPage, setCurrentPage, 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = helpRequests.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(helpRequests.length / itemsPerPage)
+  const totalPages = useMemo(() => Math.ceil(helpRequests.length / itemsPerPage), [helpRequests.length])
+  const scrollCooldownDuration = 50;
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
@@ -62,7 +63,9 @@ const HelpRequestsComponent: FC<RequestsProps> = ({currentPage, setCurrentPage, 
         {errorMessage === null && (
           <>
             {viewMode === 'map' ? (
-              <MapWrapper helpRequests={helpRequests}/>
+              <Box paddingTop={'2rem'}>
+                <MapWrapper helpRequests={helpRequests}/>
+              </Box>
             ) : (
               <Box>
                 <CardList 
@@ -71,6 +74,7 @@ const HelpRequestsComponent: FC<RequestsProps> = ({currentPage, setCurrentPage, 
                   totalPages={totalPages}
                   currentPage={currentPage}
                   setCurrentPage={setCurrentPage}
+                  scrollCooldownDuration={scrollCooldownDuration}
                 />
                 <Box sx={{
                   display: 'flex',       
@@ -95,4 +99,3 @@ const HelpRequestsComponent: FC<RequestsProps> = ({currentPage, setCurrentPage, 
 };
 
 export default HelpRequestsComponent;
-

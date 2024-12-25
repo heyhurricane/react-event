@@ -9,6 +9,7 @@ type useFilterProps = {
 export function useFilters({ helpRequestsList }: useFilterProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [filteredData, setFilteredData] = useState<HelpRequest[]>([]);
 
@@ -42,10 +43,12 @@ export function useFilters({ helpRequestsList }: useFilterProps) {
   return {
     searchTerm,
     selectedOptions,
+    selectedDate, 
     currentPage,
     filteredData,
     setSearchTerm,
     setSelectedOptions,
+    setSelectedDate,
     setCurrentPage,
   };
 }

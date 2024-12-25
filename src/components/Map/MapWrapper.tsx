@@ -7,12 +7,12 @@ type MapWrapperProps = {
 };
 
 const MapWrapper: React.FC<MapWrapperProps> = ({ helpRequests }) => {
-  const isMounted = useRef(false); // Track if the component is mounted
+  const isMounted = useRef(false);
 
   useEffect(() => {
-    isMounted.current = true; // Mark as mounted
+    isMounted.current = true;
     return () => {
-      isMounted.current = false; // Clean up on unmount
+      isMounted.current = false;
     };
   }, []);
 
