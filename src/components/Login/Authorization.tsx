@@ -10,23 +10,26 @@ import {
   Typography,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useMode } from '../../theme';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useValidation } from '../../hooks/useValidation';
 import { loginAction } from '../../store/api-actions';
-import { setPassword, setLogin } from '../../store/formAuthorization';
+import { setPassword, setLogin, setIsPasswordValid, setIsLoginValid } from '../../store/formAuthorization';
 import { AuthData } from '../../types/auth-data';
 import { getAuthError } from '../../store/authorization/authorization-selectors';
+import { clearErrorMessage } from '../../store/authorization';
 
 export function Authorization() {
   const errorMessage = useAppSelector(getAuthError);
   const dispatch = useAppDispatch();
   const { login, password } = useAppSelector((state) => state.formAuthorization);
+  const isLoginValid = useAppSelector((state) => state.formAuthorization.isLoginValid);
+  const isPasswordValid = useAppSelector((state) => state.formAuthorization.isPasswordValid);
+  const { validateLogin, validatePassword } = useValidation();
 
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [isLoginValid, setIsLoginValid] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
 
   const [theme] = useMode();
@@ -38,14 +41,15 @@ export function Authorization() {
   const handleInputPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const passwordValue = e.target.value;
     dispatch(setPassword(passwordValue));
-    setIsPasswordValid(passwordValue.length >= 5);
+    dispatch(setIsPasswordValid(validatePassword(passwordValue)));
+    dispatch(clearErrorMessage());
   };
 
   const handleInputLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const email = e.target.value;
     dispatch(setLogin(email));
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setIsLoginValid(emailRegex.test(email));
+    dispatch(setIsLoginValid(validateLogin(email)));
+    dispatch(clearErrorMessage());
   };
 
   const onSubmit = (authData: AuthData) => {
@@ -58,6 +62,10 @@ export function Authorization() {
       onSubmit({ login, password });
     }
   };
+
+  useEffect(() => {
+    
+  }, [validateLogin]);
 
   return (
     <Box

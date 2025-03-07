@@ -16,7 +16,11 @@ const initialState: HelpRequestData = {
 export const helpRequestData = createSlice({
   name: 'HELP_REQUEST',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    resetHelpRequestError: (state) => {
+      state.hasHelpRequestError = false;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchHelpRequestsAction.pending, (state) => {
@@ -55,3 +59,6 @@ export const helpRequestData = createSlice({
       });
   },
 });
+
+export default helpRequestData.reducer;
+export const { resetHelpRequestError } = helpRequestData.actions;

@@ -6,3 +6,4 @@ export const getHelpRequestInfo = (state: RootState): HelpRequest | null => stat
 export const getRequestLoadingStatus = (state: RootState): boolean => state['HELP_REQUEST'].isRequestDataLoading;
 export const getIsRequestLoading = (state: RootState): boolean => state['HELP_REQUEST'].isRequestsDataLoading;
 export const getRequestDataError = (state: RootState): boolean => state['HELP_REQUEST'].hasError;
+export const getHelpRequestError = (state: RootState): boolean => state['HELP_REQUEST'].hasHelpRequestError;
