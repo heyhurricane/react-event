@@ -74,9 +74,8 @@ export default function HeaderNavigationApp() {
               display: 'flex',
               justifyContent: 'flex-end',
               alignItems: 'center',
-              width: 'calc(31.3rem + 0.11*(100vw - 192rem))',
-              [`@media (max-width:${theme.breakpoints.values.sm}px)`]: {
-                width: 'calc(5rem) ',
+              [`@media (min-width:${theme.breakpoints.values.sm}px)`]: {
+                width: 'calc(31.3rem + 0.11*(100vw - 192rem))',
               },
             }}
           >

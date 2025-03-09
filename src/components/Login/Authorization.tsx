@@ -63,9 +63,27 @@ export function Authorization() {
     <Box
       display='flex'
       width='100%'
-      sx={{ [`@media (max-width:${theme.breakpoints.values.sm}px)`]: { justifyContent: 'center' } }}
+      sx={{
+        [`@media (max-width:${theme.breakpoints.values.sm}px)`]: {
+          justifyContent: 'center',
+        },
+      }}
     >
-      <Box marginLeft='4rem' marginTop='64px' sx={{ maxWidth: '480px', display: 'flex', flexDirection: 'column' }}>
+      <Box
+        display='flex'
+        flexDirection='column'
+        maxWidth='480px'
+        marginLeft='4rem'
+        marginRight='2rem'
+        marginTop='64px'
+        sx={{
+          flexDirection: 'column',
+          [`@media (max-width:${theme.breakpoints.values.sm}px)`]: {
+            marginLeft: '0',
+            marginBottom: '4rem',
+          },
+        }}
+      >
         <Typography variant='h4'>Авторизация</Typography>
         <Typography variant='h5' sx={{ marginTop: '9rem', marginBottom: '35px' }}>
           Вход

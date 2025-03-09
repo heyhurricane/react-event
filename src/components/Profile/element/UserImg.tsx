@@ -17,7 +17,9 @@ export function UserImg() {
         }}
         style={{
           width: 'calc(21.3rem + 0.11*(100vw - 192rem))',
+          minWidth: '6.4rem',
           height: 'calc(16rem + 0.08*(100vw - 192rem))',
+          minHeight: '4.8rem',
         }}
       />
     </Box>

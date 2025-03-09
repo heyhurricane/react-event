@@ -23,31 +23,10 @@ const Filters: React.FC<FilterProps> = ({ selectedOptions, selectedDate, setSele
     });
   };
 
-  // Handle date change
-  const handleDateChange = (date: string | null) => {
-    if (date) {
-      // Set selected options to only include the new date
-      setSelectedOptions((prev) => {
-        const filteredOptions = prev.filter((option) => !option.match(/^\d{4}-\d{2}-\d{2}$/));
-        // Keep only the formatted date
-        return [...filteredOptions, date];
-      });
-    } else {
-      setSelectedDate(null);
-      setSelectedOptions((prev) => prev.filter((option) => !option.match(/^\d{4}-\d{2}-\d{2}$/)));
-    }
-  };
-
   const handleReset = () => {
     setSelectedOptions([]);
     setSelectedDate(null);
   };
-
-  useEffect(() => {
-    if (typeof selectedDate === 'string' || selectedDate === null) {
-      handleDateChange(selectedDate);
-    }
-  }, [selectedDate]);
 
   return (
     <Paper
@@ -61,6 +40,9 @@ const Filters: React.FC<FilterProps> = ({ selectedOptions, selectedDate, setSele
         },
         [`@media (max-width:${theme.breakpoints.values.md}px)`]: {
           boxShadow: 'none',
+        },
+        [`@media (max-width: ${319}px)`]: {
+          width: '240px',
         },
       }}
     >

@@ -8,7 +8,7 @@ import { ViewHelpRequests } from '../ViewHelpRequests';
 
 type RequestsProps = {
   helpRequests: HelpRequest[];
-  customItemsPerPage?: number;
+  customNumberItemsPerPage?: number;
   noSearchResult: boolean;
   setIsResetFilters: React.Dispatch<React.SetStateAction<boolean>>;
   isHelpRequestsError: boolean;
@@ -19,7 +19,7 @@ type RequestsProps = {
 
 const HelpRequestsComponent: FC<RequestsProps> = ({
   helpRequests,
-  customItemsPerPage,
+  customNumberItemsPerPage,
   noSearchResult,
   setIsResetFilters,
   isHelpRequestsError,
@@ -44,7 +44,7 @@ const HelpRequestsComponent: FC<RequestsProps> = ({
       <ViewHelpRequests
         viewMode={viewMode}
         helpRequests={helpRequests}
-        customItemsPerPage={customItemsPerPage}
+        customNumberItemsPerPage={customNumberItemsPerPage}
         notFoundResult={noSearchResult}
         setIsResetFilters={setIsResetFilters}
         isHelpRequestsError={isHelpRequestsError}
