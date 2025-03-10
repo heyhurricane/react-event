@@ -43,7 +43,7 @@ export default function BottomNavigationApp() {
         }}
       >
         <Link
-          href='/'
+          href='https://github.com/nat-davydova/charity_event_back_oct2024/tree/main'
           fontSize={'16px'}
           target='_blank'
           underline='hover'

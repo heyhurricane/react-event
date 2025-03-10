@@ -1,12 +1,16 @@
-import { Button, Paper, Typography } from '@mui/material';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import React from 'react';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import { Button, Paper, Typography } from '@mui/material';
+
+import { useMode } from '../../theme';
 
 interface FilterButtonProps {
   onClick: () => void;
 }
 
 const FilterButton: React.FC<FilterButtonProps> = ({ onClick }) => {
+  const [theme] = useMode();
+
   return (
     <Paper>
       <Button
@@ -22,7 +26,16 @@ const FilterButton: React.FC<FilterButtonProps> = ({ onClick }) => {
         }}
       >
         <FilterListIcon />
-        <Typography sx={{ marginLeft: '0.5rem' }}>Фильтры</Typography>
+        <Typography
+          sx={{
+            marginLeft: '0.5rem',
+            [`@media (max-width:${theme.breakpoints.values.sm}px)`]: {
+              display: 'none',
+            },
+          }}
+        >
+          Фильтры
+        </Typography>
       </Button>
     </Paper>
   );

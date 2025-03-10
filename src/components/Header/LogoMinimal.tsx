@@ -10,7 +10,7 @@ export function LogoMinimal() {
           svg.removeAttribute('width');
         }}
         style={{
-          width: '5rem',
+          width: '4.5rem',
         }}
       />
     </Box>

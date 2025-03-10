@@ -23,7 +23,15 @@ const ViewToggle: FC<ViewToggleProps> = ({ viewMode, onOptionChange }) => {
       <ToggleButton value='grid' aria-label='Grid view'>
         <GridOnIcon />
       </ToggleButton>
-      <ToggleButton value='list' aria-label='List view'>
+      <ToggleButton
+        value='list'
+        aria-label='List view'
+        sx={{
+          [`@media (max-width: ${675}px)`]: {
+            display: 'none',
+          },
+        }}
+      >
         <ListAltRoundedIcon />
       </ToggleButton>
       <ToggleButton value='map' aria-label='Map view'>

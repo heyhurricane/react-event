@@ -18,6 +18,15 @@ export function CustomTab({ label, index, ...props }) {
         [`@media (max-width:${theme.breakpoints.values.md}px)`]: {
           fontSize: '1.2rem',
         },
+        [`@media (max-width:${theme.breakpoints.values.sm}px)`]: {
+          fontSize: '1.1rem',
+        },
+        [`@media (max-width:${470}px)`]: {
+          padding: '1rem 0',
+        },
+        [`@media (max-width:${400}px)`]: {
+          width: '100%',
+        },
       }}
     />
   );

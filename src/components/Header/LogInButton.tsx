@@ -26,7 +26,9 @@ export default function LogInButton() {
           width: '122px',
           height: '40px',
           [`@media (max-width:${theme.breakpoints.values.sm}px)`]: {
-            width: '100%',
+            width: '4.5rem',
+            fontSize: '1.1rem',
+            marginLeft: '0.5rem',
           },
         }}
         component={Link}

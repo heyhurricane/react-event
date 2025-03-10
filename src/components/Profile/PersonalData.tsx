@@ -96,8 +96,8 @@ export default function PersonalData() {
         </Stack>
       </Stack>
 
-      <Stack alignItems={'flex-start'}>
-        <Stack gap={'1rem'}>
+      <Stack alignItems={'flex-start'} gap={'1rem'}>
+        <Stack>
           <Typography variant={'h6'}>Обо мне</Typography>
         </Stack>
 

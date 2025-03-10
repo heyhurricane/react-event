@@ -42,9 +42,8 @@ const useParseURL = (props: useParseURLProps) => {
 
     const parseSelectedOptions = () => {
       if (urlSelectedOptions && urlSelectedOptions.length > 0) {
-        const filteredSelectedOptions = urlSelectedOptions.filter((option) => option !== selectedDate);
-        if (filteredSelectedOptions !== selectedOptions && setSelectedOptions) {
-          setSelectedOptions(filteredSelectedOptions);
+        if (urlSelectedOptions !== selectedOptions && setSelectedOptions) {
+          setSelectedOptions(urlSelectedOptions);
         }
       }
     };
@@ -77,9 +76,8 @@ const useParseURL = (props: useParseURLProps) => {
 
     const updateSelectedOptionsURL = () => {
       if (selectedOptions) {
-        const filteredOptions = selectedOptions.filter((option) => option !== selectedDate);
         params.delete('selectedOption');
-        filteredOptions.forEach((option) => params.append('selectedOption', option));
+        selectedOptions.forEach((option) => params.append('selectedOption', option));
       } else {
         params.delete('selectedOption');
       }
