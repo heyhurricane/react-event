@@ -1,11 +1,10 @@
-import React from 'react';
 import { Box, Typography } from '@mui/material';
 
 import { useMode } from '../../theme';
 
 import { TestProfilesSlider } from './TestProfilesSlider';
 
-export default function TestingProfilesSM() {
+const TestingProfilesSM = () => {
   const [theme] = useMode();
 
   return (
@@ -22,7 +21,7 @@ export default function TestingProfilesSM() {
     >
       <Box
         marginLeft={'4rem'}
-        marginTop={'64px'}
+        marginTop={'6.4rem'}
         sx={{
           [`@media (max-width:${theme.breakpoints.values.md}px)`]: {
             marginLeft: '2rem',
@@ -43,4 +42,6 @@ export default function TestingProfilesSM() {
       </Box>
     </Box>
   );
-}
+};
+
+export default TestingProfilesSM;

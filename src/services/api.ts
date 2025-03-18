@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestCo
 import { StatusCodes } from 'http-status-codes';
 import { toast } from 'react-toastify';
 
-import { BASE_URL, REQUEST_TIMEOUT } from '../const/const';
+import { BASE_URL, REQUEST_TIMEOUT } from '../constants/globalConsts';
 
 import { getToken } from './token';
 

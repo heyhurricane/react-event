@@ -7,7 +7,7 @@ const initialState: HelpRequestData = {
   helpRequestsList: [],
   isRequestsDataLoading: false,
   hasError: false,
-  isСontributionPostingStatus: false,
+  isContributionPostingStatus: false,
   request: null,
   isRequestDataLoading: true,
   hasHelpRequestError: false,
@@ -36,13 +36,13 @@ export const helpRequestData = createSlice({
         state.hasError = true;
       })
       .addCase(fetchContributeToRequest.pending, (state) => {
-        state.isСontributionPostingStatus = true;
+        state.isContributionPostingStatus = true;
       })
       .addCase(fetchContributeToRequest.fulfilled, (state) => {
-        state.isСontributionPostingStatus = false;
+        state.isContributionPostingStatus = false;
       })
       .addCase(fetchContributeToRequest.rejected, (state) => {
-        state.isСontributionPostingStatus = false;
+        state.isContributionPostingStatus = false;
       })
       .addCase(fetchRequestAction.pending, (state) => {
         state.isRequestDataLoading = true;

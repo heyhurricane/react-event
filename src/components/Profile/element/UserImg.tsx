@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { ReactSVG } from 'react-svg';
 
-export function UserImg() {
+const UserImg = () => {
   return (
     <Box
       display={'flex'}
@@ -24,4 +24,6 @@ export function UserImg() {
       />
     </Box>
   );
-}
+};
+
+export default UserImg;

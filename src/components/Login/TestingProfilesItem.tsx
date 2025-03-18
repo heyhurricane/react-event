@@ -1,16 +1,20 @@
 import { Box, Card, CardContent, Typography } from '@mui/material';
 import { InfoOutlined } from '@mui/icons-material';
-import { useDispatch } from 'react-redux';
 
-import { setPassword, setLogin, setIsPasswordValid, setIsLoginValid } from '../../store/formAuthorization';
-import { AppDispatch } from '../../store/types';
+import {
+  setPassword,
+  setLogin,
+  setIsPasswordValid,
+  setIsLoginValid,
+} from '../../store/authorization/authorizationFormSlice';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useValidation } from '../../hooks/useValidation';
-import { clearErrorMessage } from '../../store/authorization';
+import { clearErrorMessage } from '../../store/authorization/authorizationSlice';
 
-export function TestingProfilesIteam({ user }) {
-  const dispatch = useDispatch<AppDispatch>();
+export function TestingProfilesItem({ user }) {
+  const dispatch = useAppDispatch();
   const { validateLogin, validatePassword } = useValidation();
-  
+
   return (
     <Card
       variant='outlined'
@@ -42,10 +46,9 @@ export function TestingProfilesIteam({ user }) {
               alignItems: 'flex-start',
             }}
           >
-            <Typography sx={{ fontWeight: 500, fontSize: '16px' }}>{user.name}</Typography>
-
-            <Typography sx={{ fontWeight: 400, fontSize: '14px' }}>Логин: {user.login}</Typography>
-            <Typography sx={{ fontWeight: 400, fontSize: '14px' }}>Пароль: {user.password}</Typography>
+            <Typography sx={{ fontWeight: 500, fontSize: '1.6rem' }}>{user.name}</Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: '1.4rem' }}>Логин: {user.login}</Typography>
+            <Typography sx={{ fontWeight: 400, fontSize: '1.4rem' }}>Пароль: {user.password}</Typography>
           </Box>
         </Box>
       </CardContent>

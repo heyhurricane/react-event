@@ -1,6 +1,6 @@
 import { IFilterOption } from '../types/IFilterOption';
 
-export const filterOptions: IFilterOption[] = [
+export const filterOptionsConst: IFilterOption[] = [
   {
     type: 'checkList',
     title: 'Кому мы помогаем',

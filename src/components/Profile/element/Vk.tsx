@@ -1,15 +1,15 @@
 import { Box } from '@mui/material';
 import { ReactSVG } from 'react-svg';
 
-export function Vk() {
+const Vk = () => {
   return (
     <Box
       display={'flex'}
-      justifyContent={'center'}
       flexDirection={'column'}
+      justifyContent={'center'}
       alignItems={'center'}
-      gap={'20px'}
       height={'100%'}
+      gap={'2rem'}
     >
       <ReactSVG
         src='/img/vk.svg'
@@ -24,4 +24,6 @@ export function Vk() {
       />
     </Box>
   );
-}
+};
+
+export default Vk;

@@ -3,10 +3,10 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { createAPI } from '../services/api';
 
-import authorizationReducer, { logOut } from './authorization';
+import authorizationReducer, { logOut } from './authorization/authorizationSlice';
 import userFavouritesReducer from './user-favourites/userFavourites';
-import profileReducer from './profileStore';
-import formAuthorizationReducer from './formAuthorization';
+import profileReducer from './userProfile/profileSlice';
+import formAuthorizationReducer from './authorization/authorizationFormSlice';
 import { helpRequestData } from './help-requests/help-requests-data';
 
 const rootReducer = combineReducers({

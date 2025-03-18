@@ -1,27 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { dropToken } from '../services/token';
-import { AUTH_TOKEN_KEY_NAME } from '../const/const';
+import { dropToken } from '../../services/token';
+import { AUTH_TOKEN_KEY_NAME } from '../../constants/globalConsts';
+import { loginAction } from '../api-actions';
 
-import { loginAction } from './api-actions';
-
-// Define a type for the slice state
 interface CounterState {
   isAuthenticated: boolean;
   isAuthPending: boolean;
-  errorMessage: string | null; // Добавляем поле для хранения сообщения об ошибке
+  errorMessage: string | null;
 }
 
-// Define the initial state using that type
 const initialState: CounterState = {
   isAuthenticated: !!localStorage.getItem(AUTH_TOKEN_KEY_NAME),
   isAuthPending: false,
-  errorMessage: null, // Изначально ошибка отсутствует
+  errorMessage: null,
 };
 
 export const authorizationSlice = createSlice({
   name: 'authorization',
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     setAuthorized: (state) => {
@@ -30,7 +26,7 @@ export const authorizationSlice = createSlice({
     logOut: (state) => {
       dropToken();
       state.isAuthenticated = false;
-      state.errorMessage = null; // Сбрасываем сообщение об ошибке при выходе
+      state.errorMessage = null;
       state.isAuthPending = false;
     },
     clearErrorMessage: (state) => {
@@ -41,12 +37,12 @@ export const authorizationSlice = createSlice({
     builder
       .addCase(loginAction.pending, (state) => {
         state.isAuthPending = true;
-        state.errorMessage = null; // Сбрасываем сообщение об ошибке при новом запросе
+        state.errorMessage = null;
       })
       .addCase(loginAction.fulfilled, (state) => {
         state.isAuthPending = false;
         state.isAuthenticated = true;
-        state.errorMessage = null; // Сбрасываем сообщение об ошибке при успешной аутентификации
+        state.errorMessage = null;
       })
       .addCase(loginAction.rejected, (state, action) => {
         state.isAuthPending = false;

@@ -4,7 +4,7 @@ export interface HelpRequestData {
   helpRequestsList: HelpRequest[];
   isRequestsDataLoading: boolean;
   hasError: boolean;
-  isСontributionPostingStatus: boolean;
+  isContributionPostingStatus: boolean;
   request: HelpRequest | null;
   isRequestDataLoading: boolean;
   hasHelpRequestError: boolean;

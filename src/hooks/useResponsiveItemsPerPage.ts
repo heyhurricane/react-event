@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useResponsiveItemsPerPage = () => {
+export const useResponsiveItemsPerPage = () => {
   const [itemsPerPage, setItemsPerPage] = useState(3);
 
   useEffect(() => {
@@ -31,5 +31,3 @@ const useResponsiveItemsPerPage = () => {
 
   return itemsPerPage;
 };
-
-export default useResponsiveItemsPerPage;

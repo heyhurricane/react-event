@@ -2,8 +2,9 @@ import { Box, Link } from '@mui/material';
 
 import { useMode } from '../../theme';
 
-export default function BottomNavigationApp() {
+const Footer = () => {
   const [theme] = useMode();
+
   return (
     <Box
       display={'flex'}
@@ -44,7 +45,7 @@ export default function BottomNavigationApp() {
       >
         <Link
           href='https://github.com/nat-davydova/charity_event_back_oct2024/tree/main'
-          fontSize={'16px'}
+          fontSize={'1.6rem'}
           target='_blank'
           underline='hover'
           sx={{
@@ -59,7 +60,7 @@ export default function BottomNavigationApp() {
         <Link
           href='https://github.com/heyhurricane/react-event'
           underline='hover'
-          fontSize={'16px'}
+          fontSize={'1.6rem'}
           sx={{
             color: 'black',
             '&:hover': { color: 'black' },
@@ -73,7 +74,7 @@ export default function BottomNavigationApp() {
           href='https://t.me/natti_jun_front'
           target='_blank'
           underline='hover'
-          fontSize={'16px'}
+          fontSize={'1.6rem'}
           sx={{
             color: 'black',
             '&:hover': { color: 'black' },
@@ -84,4 +85,6 @@ export default function BottomNavigationApp() {
       </Box>
     </Box>
   );
-}
+};
+
+export default Footer;

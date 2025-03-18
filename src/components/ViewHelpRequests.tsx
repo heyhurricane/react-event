@@ -2,13 +2,13 @@ import { FC, useEffect, useMemo, useState } from 'react';
 import { Box, Skeleton, useMediaQuery } from '@mui/material';
 
 import { HelpRequest } from '../types/HelpRequest';
-import { VIEW_TOGGLE_OPTIONS } from '../const/const';
+import { VIEW_TOGGLE_OPTIONS } from '../constants/globalConsts';
 import { usePagination } from '../hooks/usePagination';
 
 import CardList from './CardList/CardList';
 import MapWrapper from './Map/MapWrapper';
-import { ErrorComponent } from './Error';
-import { NotFoundResult } from './NotFoundResult';
+import ErrorComponent from './ErrorComponent';
+import NotFoundResult from './NotFoundResult';
 import Pagination from './Pagination';
 
 interface IViewHelpRequests {

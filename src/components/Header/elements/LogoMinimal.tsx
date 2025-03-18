@@ -1,7 +1,7 @@
 import { ReactSVG } from 'react-svg';
 import { Box } from '@mui/material';
 
-export function LogoMinimal() {
+const LogoMinimal = () => {
   return (
     <Box display={'flex'} justifyContent={'flex-start'} alignItems={'center'}>
       <ReactSVG
@@ -15,4 +15,6 @@ export function LogoMinimal() {
       />
     </Box>
   );
-}
+};
+
+export default LogoMinimal;

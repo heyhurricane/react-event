@@ -1,5 +1,9 @@
 import { RootState } from '../types';
 
+export const getFavourites = (state: RootState) => {
+  return state['favourites'];
+};
+
 export const getFavouriteRequestsIDs = (state: RootState) => {
   return state['favourites'].favouriteRequests;
 };

@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { ReactSVG } from 'react-svg';
 import { Box } from '@mui/material';
 
-import { useMode } from '../../theme';
+import { useMode } from '../../../theme';
 
-import { LogoMinimal } from './LogoMinimal';
+import LogoMinimal from './LogoMinimal';
 
-export function Logo() {
+const Logo = () => {
   const [theme] = useMode();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= theme.breakpoints.values.sm);
 
@@ -39,4 +39,6 @@ export function Logo() {
       />
     </Box>
   );
-}
+};
+
+export default Logo;

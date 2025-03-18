@@ -1,8 +1,8 @@
 import { Box, Button, Paper, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Calendar from '../Calendar/Calendar';
-import { filterOptions } from '../../const/filterOptions';
+import { filterOptionsConst } from '../../constants/filterOptionsConst';
 import { FilterProps } from '../../types/IFilterOption';
 import { useMode } from '../../theme';
 
@@ -51,7 +51,7 @@ const Filters: React.FC<FilterProps> = ({ selectedOptions, selectedDate, setSele
           Фильтрация
         </Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: '2rem' }}>
-          {filterOptions.map((item, index) => {
+          {filterOptionsConst.map((item, index) => {
             if (item.type === 'checkList') {
               return (
                 <StandardCheckboxes

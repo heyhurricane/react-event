@@ -1,7 +1,8 @@
 import { Box, Tabs, useMediaQuery } from '@mui/material';
 
-import { CustomTab } from './CustomTab';
-export function TabsProfile({ value, setValue }) {
+import CustomTab from './CustomTab';
+
+const TabsProfile = ({ value, setValue }) => {
   const isSmallScreen = useMediaQuery('(max-width:400px)');
 
   function handleChange(e: React.SyntheticEvent, numberTab: number) {
@@ -11,7 +12,7 @@ export function TabsProfile({ value, setValue }) {
   return (
     <Box
       sx={{
-        padding: '10px 0 0 0',
+        padding: '1rem 0 0 0',
       }}
     >
       <Tabs
@@ -23,7 +24,7 @@ export function TabsProfile({ value, setValue }) {
         sx={{
           minHeight: 0,
           '& .MuiTabs-scrollButtons': {
-            width: '26px',
+            width: '2.6rem',
           },
         }}
       >
@@ -33,4 +34,6 @@ export function TabsProfile({ value, setValue }) {
       </Tabs>
     </Box>
   );
-}
+};
+
+export default TabsProfile;

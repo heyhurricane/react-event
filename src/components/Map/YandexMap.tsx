@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef } from 'react';
 
-import { formatDate } from '../../helper-functions/helper-functions';
+import { formatDate } from '../../utils/formatUtils';
 import { HelpRequest } from '../../types/HelpRequest';
 import { IYandexMap, IYandexObjectManager } from '../../types/IMap';
 

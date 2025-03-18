@@ -4,7 +4,7 @@ import GridOnIcon from '@mui/icons-material/GridOn';
 import ListAltRoundedIcon from '@mui/icons-material/ListAltRounded';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
-import { VIEW_TOGGLE_OPTIONS } from '../../const/const';
+import { VIEW_TOGGLE_OPTIONS } from '../../constants/globalConsts';
 
 type ViewToggleProps = {
   viewMode: VIEW_TOGGLE_OPTIONS;

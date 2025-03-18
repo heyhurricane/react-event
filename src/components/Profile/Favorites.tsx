@@ -1,32 +1,26 @@
 import { FC, useEffect } from 'react';
 import { Box } from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
 
-import { AppDispatch, RootState } from '../../store/types';
 import { setHelpRequest, setFavouriteHelp, setIsLoading } from '../../store/user-favourites/userFavourites';
-import { matchFavourites } from '../../features/matchFavourites';
+import { matchFavourites } from '../../helpers/matchFavourites';
 import { fetchHelpRequestsAction } from '../../store/api-actions';
 import { ViewHelpRequests } from '../ViewHelpRequests';
-import { VIEW_TOGGLE_OPTIONS } from '../../const/const';
+import { VIEW_TOGGLE_OPTIONS } from '../../constants/globalConsts';
+import { getHelpRequests, getRequestDataError } from '../../store/help-requests/selectors';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { getFavourites } from '../../store/user-favourites/favourites-selectors';
 
 interface IFavorites {
   viewMode: VIEW_TOGGLE_OPTIONS;
   customNumberItemsPerPage: number;
 }
 const Favorites: FC<IFavorites> = ({ viewMode, customNumberItemsPerPage }) => {
-  const userFavourites = useSelector((state: RootState) => {
-    return state.favourites;
-  });
+  const dispatch = useAppDispatch();
 
-  const helpRequestData = useSelector((state: RootState) => {
-    return state.HELP_REQUEST.helpRequestsList;
-  });
-
-  const helpRequestDataError = useSelector((state: RootState) => {
-    return state.HELP_REQUEST.hasError;
-  });
-
-  const dispatch = useDispatch<AppDispatch>();
+  const helpRequestData = useAppSelector(getHelpRequests);
+  const helpRequestDataError = useAppSelector(getRequestDataError);
+  const userFavourites = useAppSelector(getFavourites);
 
   useEffect(() => {
     if (helpRequestData.length > 0) {
@@ -51,7 +45,7 @@ const Favorites: FC<IFavorites> = ({ viewMode, customNumberItemsPerPage }) => {
   const notFoundResult = userFavourites.isData && userFavourites.favouriteRequests.length === 0;
 
   return (
-    <Box height={'100%'} marginTop={'20px'}>
+    <Box height={'100%'} marginTop={'2rem'}>
       <ViewHelpRequests
         viewMode={viewMode}
         helpRequests={userFavourites.favouriteHelp}

@@ -1,22 +1,23 @@
 import { AppBar, Box, Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import { AppRoute } from '../../const/const';
+import { AppRoute } from '../../constants/globalConsts';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useMode } from '../../theme';
 
-import LogInButton from './LogInButton';
-import ImageAvatar from './Avatar';
-import { Logo } from './Logo';
+import LogInButton from './elements/LogInButton';
+import ImageAvatar from './elements/ImageAvatar';
+import Logo from './elements/Logo';
 
-export default function HeaderNavigationApp() {
+const Header = () => {
   const navigate = useNavigate();
   const isAuthenticated = useAppSelector((store) => store.auth.isAuthenticated);
+  const [theme] = useMode();
 
   const handleClickRequest = () => {
     navigate(AppRoute.Main, { replace: true });
   };
-  const [theme] = useMode();
+
   return (
     <Box
       bgcolor={theme.palette.background.default}
@@ -32,7 +33,7 @@ export default function HeaderNavigationApp() {
           sx={{
             width: '100%',
             padding: '0 calc(8.1rem + 0.109375 * (100vw - 192rem))',
-            height: '64px',
+            height: '6.4rem',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -60,7 +61,7 @@ export default function HeaderNavigationApp() {
               color='inherit'
               underline='hover'
               sx={{
-                fontSize: '16px',
+                fontSize: '1.6rem',
                 lineHeight: '150%',
                 letterSpacing: '0.15px',
                 cursor: 'pointer',
@@ -85,4 +86,6 @@ export default function HeaderNavigationApp() {
       </AppBar>
     </Box>
   );
-}
+};
+
+export default Header;

@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
 import React from 'react';
+import { Box } from '@mui/material';
 
 interface IPagesProfile {
   children: React.ReactNode;
@@ -7,7 +7,7 @@ interface IPagesProfile {
   value: number;
 }
 
-export default function PagesProfile(props: IPagesProfile) {
+const PagesProfile = (props: IPagesProfile) => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -28,4 +28,6 @@ export default function PagesProfile(props: IPagesProfile) {
       )}
     </div>
   );
-}
+};
+
+export default PagesProfile;

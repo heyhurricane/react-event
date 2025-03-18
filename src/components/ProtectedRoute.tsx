@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
 import { useAppSelector } from '../hooks/useAppSelector';
-import { AppRoute } from '../const/const';
+import { AppRoute } from '../constants/globalConsts';
 
 type Props = {
   component: ReactNode; // Changed from ReactNode to ComponentType

@@ -1,20 +1,19 @@
 import { Box, Button, Divider, Stack, Typography } from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
 
-import { RootState } from '../../store/types';
-import { logOut } from '../../store/authorization';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { logOut } from '../../store/authorization/authorizationSlice';
 import { useMode } from '../../theme';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { getProfileData } from '../../store/userProfile/profileSelectors';
 
-import { UserImg } from './element/UserImg';
+import UserImg from './element/UserImg';
 
-export default function CardProfile() {
-  const { data } = useSelector((state: RootState) => {
-    return state.profile;
-  });
+const CardProfile = () => {
+  const dispatch = useAppDispatch();
+  const { data } = useAppSelector(getProfileData);
   const [theme] = useMode();
-  const dispatch = useDispatch();
+
   function handleClick() {
-    //вызывать функцию для удаления токена
     dispatch(logOut());
   }
 
@@ -42,8 +41,8 @@ export default function CardProfile() {
         />
         <Stack>
           <Stack
-            marginBottom={'10px'}
-            marginTop={'20px'}
+            marginTop={'2rem'}
+            marginBottom={'1rem'}
             alignItems={'flex-start'}
             sx={{
               [`@media (max-width:${theme.breakpoints.values.md}px)`]: {
@@ -53,7 +52,7 @@ export default function CardProfile() {
           >
             <Typography
               variant='h6'
-              marginLeft={'20px'}
+              marginLeft={'2rem'}
               sx={{
                 [`@media (max-width:${theme.breakpoints.values.md}px)`]: {
                   margin: '0',
@@ -65,10 +64,10 @@ export default function CardProfile() {
           </Stack>
 
           <Stack
-            marginLeft={'20px'}
             direction={'row'}
-            gap={'4px'}
-            marginBottom={'50px'}
+            gap={'0.4rem'}
+            marginLeft={'2rem'}
+            marginBottom={'5rem'}
             sx={{
               [`@media (max-width:${theme.breakpoints.values.md}px)`]: {
                 margin: '0',
@@ -91,8 +90,8 @@ export default function CardProfile() {
         </Stack>
 
         <Stack
-          margin={'0 20px'}
-          marginBottom={'20px'}
+          margin={'0 2rem'}
+          marginBottom={'2rem'}
           justifyContent={'center'}
           sx={{
             [`@media (max-width:${theme.breakpoints.values.md}px)`]: {
@@ -118,8 +117,8 @@ export default function CardProfile() {
       </Box>
       <Stack
         display={'none'}
-        margin={'0 20px'}
-        marginBottom={'20px'}
+        margin={'0 2rem'}
+        marginBottom={'2rem'}
         justifyContent={'center'}
         sx={{
           [`@media (max-width:${theme.breakpoints.values.md}px)`]: {
@@ -144,4 +143,6 @@ export default function CardProfile() {
       </Stack>
     </Box>
   );
-}
+};
+
+export default CardProfile;

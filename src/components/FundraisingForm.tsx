@@ -4,7 +4,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import { useSelector } from 'react-redux';
 
-import { formatDate, formatPhoneNumber, formatString } from '../helper-functions/helper-functions';
+import { formatDate, formatPhoneNumber, formatString } from '../utils/formatUtils';
 import { HelpRequest } from '../types/HelpRequest';
 import { getFavouriteRequestsIDs } from '../store/user-favourites/favourites-selectors';
 import { useBreakpointOverlap } from '../hooks/useBreakpointOverlap';

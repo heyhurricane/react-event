@@ -1,7 +1,7 @@
 import { Box, Button, LinearProgress, Paper, Typography } from '@mui/material';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
-import { formatDate, formatNumber } from '../helper-functions/helper-functions';
+import { formatDate, formatNumber } from '../utils/formatUtils';
 import useContributeToRequest from '../hooks/useContributeToRequest';
 import { HelpRequest } from '../types/HelpRequest';
 import { useMode } from '../theme';

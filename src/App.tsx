@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { AppRoute } from './const/const';
+import { AppRoute } from './constants/globalConsts';
 import NotFoundPage from './pages/NotFoundPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import LoginPage from './pages/LoginPage';
@@ -10,7 +10,7 @@ import HelpRequest from './pages/HelpRequest';
 import { Theme } from './components/Theme';
 import HelpDesk from './pages/HelpDesk/HelpDesk';
 
-function App() {
+const App = () => {
   return (
     <Theme>
       <Router>
@@ -26,6 +26,6 @@ function App() {
       </Router>
     </Theme>
   );
-}
+};
 
 export default App;

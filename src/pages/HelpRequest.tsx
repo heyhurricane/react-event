@@ -9,7 +9,7 @@ import { useAppDispatch } from '../hooks/useAppDispatch';
 import { fetchRequestAction, getFavouritesAction } from '../store/api-actions';
 import { useAppSelector } from '../hooks/useAppSelector';
 import { getHelpRequestError, getHelpRequestInfo, getRequestLoadingStatus } from '../store/help-requests/selectors';
-import { ErrorComponent } from '../components/Error';
+import ErrorComponent from '../components/ErrorComponent';
 import { getFavouriteLoadedFlag, getFavouriteRequestsError } from '../store/user-favourites/favourites-selectors';
 import { resetFavouriteRequestsError } from '../store/user-favourites/userFavourites';
 import { resetHelpRequestError } from '../store/help-requests/help-requests-data';
@@ -37,7 +37,7 @@ const HelpRequest: React.FC = () => {
         }
       }
     };
-  
+
     fetchData();
   }, [id, dispatch]);
 

@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { HelpRequest } from '../../types/HelpRequest';
-import { formatDate, formatNumber, formatString } from '../../helper-functions/helper-functions';
+import { formatDate, formatNumber, formatString } from '../../utils/formatUtils';
 import useContributeToRequest from '../../hooks/useContributeToRequest';
 import FavouriteButton from '../FavouriteButton/FavouriteButton';
 import { getFavouriteRequestsIDs } from '../../store/user-favourites/favourites-selectors';

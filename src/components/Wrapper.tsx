@@ -3,10 +3,11 @@ import { Box } from '@mui/material';
 import { useMode } from '../theme';
 
 import HeaderNavigationApp from './Header/Header';
-import BottomNavigationApp from './Footer/Footer';
+import Footer from './Footer/Footer';
 
-export default function Wrapper({ children }) {
+const Wrapper = ({ children }) => {
   const [theme] = useMode();
+
   return (
     <Box
       width={'100%'}
@@ -34,7 +35,9 @@ export default function Wrapper({ children }) {
       >
         {children}
       </Box>
-      <BottomNavigationApp />
+      <Footer />
     </Box>
   );
-}
+};
+
+export default Wrapper;

@@ -1,14 +1,14 @@
 import { useState, Fragment } from 'react';
-import { useDispatch } from 'react-redux';
 import { Box, Avatar, Menu, MenuItem, ListItemIcon, IconButton } from '@mui/material';
 import Logout from '@mui/icons-material/Logout';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { logOut } from '../../store/authorization';
-import { AppRoute } from '../../const/const';
+import { useAppDispatch } from '../../../hooks/useAppDispatch';
+import { logOut } from '../../../store/authorization/authorizationSlice';
+import { AppRoute } from '../../../constants/globalConsts';
 
-export default function ImageAvatar() {
-  const dispatch = useDispatch();
+const ImageAvatar = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -27,7 +27,7 @@ export default function ImageAvatar() {
     setAnchorEl(null);
   };
 
-  const handlLogOut = () => {
+  const handleLogOut = () => {
     dispatch(logOut());
     navigate(AppRoute.Login, { replace: true });
   };
@@ -82,10 +82,10 @@ export default function ImageAvatar() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={handleClickProfile} sx={{ fontSize: '16px' }}>
+        <MenuItem onClick={handleClickProfile} sx={{ fontSize: '1.6rem' }}>
           <Avatar /> Мой профиль
         </MenuItem>
-        <MenuItem component={Link} to='/login' onClick={handlLogOut} sx={{ fontSize: '16px' }}>
+        <MenuItem component={Link} to='/login' onClick={handleLogOut} sx={{ fontSize: '1.6rem' }}>
           <ListItemIcon>
             <Logout fontSize='small' />
           </ListItemIcon>
@@ -94,4 +94,6 @@ export default function ImageAvatar() {
       </Menu>
     </Fragment>
   );
-}
+};
+
+export default ImageAvatar;

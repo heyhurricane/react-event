@@ -2,15 +2,16 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 
-import { useMode } from '../../theme';
+import { useMode } from '../../../theme';
 
-export default function LogInButton() {
+const LogInButton = () => {
   const [theme] = useMode();
+
   return (
     <Box
       sx={{
-        width: '220px',
-        height: '40px',
+        width: '22rem',
+        height: '4rem',
         display: 'flex',
         justifyContent: 'flex-end',
         alignItems: 'center',
@@ -23,8 +24,8 @@ export default function LogInButton() {
         variant='outlined'
         color='inherit'
         sx={{
-          width: '122px',
-          height: '40px',
+          width: '12.2rem',
+          height: '4rem',
           [`@media (max-width:${theme.breakpoints.values.sm}px)`]: {
             width: '4.5rem',
             fontSize: '1.1rem',
@@ -38,4 +39,6 @@ export default function LogInButton() {
       </Button>
     </Box>
   );
-}
+};
+
+export default LogInButton;

@@ -17,10 +17,15 @@ import { useAppSelector } from '../../hooks/useAppSelector';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useValidation } from '../../hooks/useValidation';
 import { loginAction } from '../../store/api-actions';
-import { setPassword, setLogin, setIsPasswordValid, setIsLoginValid } from '../../store/formAuthorization';
+import {
+  setPassword,
+  setLogin,
+  setIsPasswordValid,
+  setIsLoginValid,
+} from '../../store/authorization/authorizationFormSlice';
 import { AuthData } from '../../types/auth-data';
-import { getAuthError } from '../../store/authorization/authorization-selectors';
-import { clearErrorMessage } from '../../store/authorization';
+import { getAuthError } from '../../store/authorization/authorizationSelectors';
+import { clearErrorMessage } from '../../store/authorization/authorizationSlice';
 
 export function Authorization() {
   const errorMessage = useAppSelector(getAuthError);
@@ -63,9 +68,7 @@ export function Authorization() {
     }
   };
 
-  useEffect(() => {
-    
-  }, [validateLogin]);
+  useEffect(() => {}, [validateLogin]);
 
   return (
     <Box
@@ -80,10 +83,10 @@ export function Authorization() {
       <Box
         display='flex'
         flexDirection='column'
-        maxWidth='480px'
+        maxWidth='48rem'
         marginLeft='4rem'
         marginRight='2rem'
-        marginTop='64px'
+        marginTop='6.4rem'
         sx={{
           flexDirection: 'column',
           [`@media (max-width:${theme.breakpoints.values.sm}px)`]: {
@@ -93,11 +96,11 @@ export function Authorization() {
         }}
       >
         <Typography variant='h4'>Авторизация</Typography>
-        <Typography variant='h5' sx={{ marginTop: '9rem', marginBottom: '35px' }}>
+        <Typography variant='h5' sx={{ marginTop: '9rem', marginBottom: '3.5rem' }}>
           Вход
         </Typography>
 
-        <Box display='flex' flexDirection='column' gap='30px'>
+        <Box display='flex' flexDirection='column' gap='3rem'>
           <FormControl>
             <TextField
               label='Логин'

@@ -3,12 +3,12 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '../hooks/useAppSelector';
-import { AppRoute } from '../const/const';
-import TestingProfiles from '../components/Login/TestingProfiles';
+import { AppRoute } from '../constants/globalConsts';
 import { useMode } from '../theme';
 import { Authorization } from '../components/Login/Authorization';
-import TestingProfilesSM from '../components/Login/TestingProfilesSM';
 import { useBreakpointOverlap } from '../hooks/useBreakpointOverlap';
+import TestingProfiles from '../components/Login/TestingProfiles';
+import TestingProfilesSM from '../components/Login/TestingProfilesSM';
 
 const LoginPage = () => {
   const isAuthenticated = useAppSelector((store) => store.auth.isAuthenticated);

@@ -1,4 +1,4 @@
-import { AUTH_TOKEN_KEY_NAME } from '../const/const';
+import { AUTH_TOKEN_KEY_NAME } from '../constants/globalConsts';
 
 export type Token = string;
 
