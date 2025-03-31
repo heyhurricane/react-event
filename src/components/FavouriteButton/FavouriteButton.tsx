@@ -1,4 +1,4 @@
-import { Tooltip } from '@mui/material';
+import { Box, Tooltip } from '@mui/material';
 import { FC, useRef, useState } from 'react';
 
 import { IHelpRequest } from '../../types/IHelpRequest';
@@ -41,15 +41,17 @@ const FavouriteButton: FC<IFavouriteButton> = (props) => {
   const ref = useRef<HTMLDivElement>(null);
 
   return (
-    <Tooltip title={buttonText} open={isShow} onClose={() => setIsShow(false)} onOpen={() => setIsShow(true)}>
-      <FavouriteIconBtn
-        handleToggleFavourite={handleToggleFavourite}
-        ariaLabel={ariaLabel}
-        isLoading={isLoading}
-        isFavourite={isFavourite}
-        ref={ref}
-      />
-    </Tooltip>
+    <Box>
+      <Tooltip title={buttonText} open={isShow} onClose={() => setIsShow(false)} onOpen={() => setIsShow(true)}>
+        <FavouriteIconBtn
+          handleToggleFavourite={handleToggleFavourite}
+          ariaLabel={ariaLabel}
+          isLoading={isLoading}
+          isFavourite={isFavourite}
+          ref={ref}
+        />
+      </Tooltip>
+    </Box>
   );
 };
 
