@@ -36,7 +36,7 @@ const ViewHelpRequests: FC<IViewHelpRequests> = ({
   isFavouriteRequestsError,
 }) => {
   const [isInitialReset, setIsInitialReset] = useState(true);
-  const itemsPerPage = customNumberItemsPerPage || 3;
+  const itemsPerPage = (viewMode !== VIEW_TOGGLE_OPTIONS.List && customNumberItemsPerPage) || 3;
   const scrollCooldownDuration = 50;
 
   const { currentPage, setCurrentPage, totalPages, indexOfLastItem, indexOfFirstItem } = usePagination({
