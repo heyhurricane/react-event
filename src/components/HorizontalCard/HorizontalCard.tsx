@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardHeader, Divider, Stack, Typography } from '@mui/material';
+import { Box, Card, CardContent, CardHeader, Stack, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -20,19 +20,17 @@ const HorizontalCard: FC<ICardItemProps> = (props) => {
 
   const { handleContributeToRequest } = useContributeToRequest(helpRequest);
   const [isLoading, setIsLoading] = useState<boolean>(false); // /n
-
   return (
     <Link to={`/request/${helpRequest.id}`} style={{ textDecoration: 'none' }}>
       <Card
         sx={{
           display: 'flex',
-          marginTop: '20px',
           boxShadow: 'none',
           borderBottom: '1px solid #0000001F',
           borderRadius: '0px',
           width: '100%',
           flexDirection: 'row',
-          padding: '20px 0 30px 52px',
+          padding: '20px 0 20px 0px',
           gap: '30px',
         }}
       >
@@ -40,7 +38,7 @@ const HorizontalCard: FC<ICardItemProps> = (props) => {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            width: 252,
+            maxWidth: '23rem',
           }}
         >
           <CardHeader sx={{ marginBottom: '30px', padding: 0 }} title={formatString(helpRequest.title)} />
@@ -52,7 +50,6 @@ const HorizontalCard: FC<ICardItemProps> = (props) => {
           />
         </Box>
 
-        <Divider component='div' />
         <CardContent
           sx={{
             padding: 0,
