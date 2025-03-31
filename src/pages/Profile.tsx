@@ -1,5 +1,5 @@
 import { Box, Paper, Skeleton, Stack, Typography } from '@mui/material';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 
 import { useAppSelector } from '../hooks/useAppSelector';
 import { getProfileData } from '../store/userProfile/profileSelectors';
@@ -17,14 +17,20 @@ import Contacts from '../components/Profile/Contacts';
 import Favourites from '../components/Profile/Favourites';
 import TabsProfile from '../components/Profile/element/TabsProfile';
 import ViewToggle from '../components/ViewToggle/ViewToggle';
+import { getTabProfile } from '../store/viewMode/viewSettingsSelectors';
+import { setTabProfile } from '../store/viewMode/viewSettingsSlice';
 
 const Profile: FC = () => {
   const dispatch = useAppDispatch();
   const profile = useAppSelector(getProfileData);
-  const [numberTab, setNumberTab] = useState(0);
   const [theme] = useMode();
   const { viewMode, handleViewChange } = useViewMode();
   const itemsPerPage = useResponsiveItemsPerPage();
+
+  const numberTab = useAppSelector(getTabProfile);
+  const setNumberTab = (numberTab: number) => {
+    dispatch(setTabProfile(numberTab));
+  };
 
   useProfileURLHandler(numberTab, setNumberTab);
 

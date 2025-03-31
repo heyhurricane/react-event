@@ -8,6 +8,7 @@ import userFavouritesReducer from './userFavourites/userFavouritesSlice';
 import profileReducer from './userProfile/profileSlice';
 import formAuthorizationReducer from './authorizationForm/authorizationFormSlice';
 import { helpRequestData } from './helpRequests/helpRequestsSlice';
+import viewSettingsReducer from './viewMode/viewSettingsSlice';
 
 const rootReducer = combineReducers({
   auth: authorizationReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   favourites: userFavouritesReducer,
   HELP_REQUEST: helpRequestData.reducer,
+  viewSettings: viewSettingsReducer,
 });
 
 interface IActionWithError extends Action {
