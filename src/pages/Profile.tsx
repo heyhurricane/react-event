@@ -113,20 +113,12 @@ const Profile: FC = () => {
                   flexDirection={'row'}
                   width={'100%'}
                   justifyContent={'space-between'}
-                  marginTop={'1.2rem'}
+                  marginTop={'12px'}
                 >
-                  <Box
-                    display={'flex'}
-                    flexDirection={'row'}
-                    width={'100%'}
-                    justifyContent={'space-between'}
-                    alignItems={'end'}
-                  >
-                    <Box width={'72%'}>
-                      <TabsProfile value={numberTab} setValue={setNumberTab} />
-                    </Box>
-                    <Box>{numberTab === 2 && <ViewToggle viewMode={viewMode} onOptionChange={handleViewChange} />}</Box>
+                  <Box width={'72%'}>
+                    <TabsProfile value={numberTab} setValue={setNumberTab} />
                   </Box>
+                  {numberTab === 2 && <ViewToggle viewMode={viewMode} onOptionChange={handleViewChange} />}
                 </Box>
                 <PagesProfile value={numberTab} index={0}>
                   <PersonalData />
