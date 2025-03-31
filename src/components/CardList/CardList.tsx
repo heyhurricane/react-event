@@ -33,6 +33,7 @@ const CardList: FC<IRequestsProps> = (requests) => {
           width={'100%'}
           spacing={viewMode === 'grid' ? 2 : 0}
           direction={viewMode === 'list' ? 'column' : 'row'}
+          marginTop={'20px'}
         >
           {helpRequests.map((request) => {
             const keyValue = request.id;
