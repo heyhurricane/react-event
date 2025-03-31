@@ -17,8 +17,8 @@ import Contacts from '../components/Profile/Contacts';
 import Favourites from '../components/Profile/Favourites';
 import TabsProfile from '../components/Profile/element/TabsProfile';
 import ViewToggle from '../components/ViewToggle/ViewToggle';
-import { getTabProfile } from '../store/viewMode/viewSettingsSelectors';
-import { setTabProfile } from '../store/viewMode/viewSettingsSlice';
+import { getTabProfile } from '../store/viewSettings/viewSettingsSelectors';
+import { setTabProfile } from '../store/viewSettings/viewSettingsSlice';
 
 const Profile: FC = () => {
   const dispatch = useAppDispatch();

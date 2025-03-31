@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from 'react';
 
 import { VIEW_TOGGLE_OPTIONS } from '../constants/globalConsts';
-import { getViewMode } from '../store/viewMode/viewSettingsSelectors';
-import { setViewMode } from '../store/viewMode/viewSettingsSlice';
+import { getViewMode } from '../store/viewSettings/viewSettingsSelectors';
+import { setViewMode } from '../store/viewSettings/viewSettingsSlice';
 
 import { useBreakpointOverlap } from './useBreakpointOverlap';
 import { useAppDispatch } from './useAppDispatch';
