@@ -8,7 +8,7 @@ import userFavouritesReducer from './userFavourites/userFavouritesSlice';
 import profileReducer from './userProfile/profileSlice';
 import formAuthorizationReducer from './authorizationForm/authorizationFormSlice';
 import { helpRequestData } from './helpRequests/helpRequestsSlice';
-import viewSettingsReducer from './viewMode/viewSettingsSlice';
+import viewSettingsReducer from './viewSettings/viewSettingsSlice';
 
 const rootReducer = combineReducers({
   auth: authorizationReducer,
