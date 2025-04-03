@@ -12,7 +12,6 @@ import StandardCheckboxes from './StandardCheckboxes';
 const Filters: FC<IFilterProps> = ({ selectedOptions, selectedDate, setSelectedOptions, setSelectedDate }) => {
   const [theme] = useMode();
 
-  // Toggle checkbox filter
   const toggleFilterOption = (props: string): void => {
     setSelectedOptions((prev) => {
       if (prev.includes(props)) {

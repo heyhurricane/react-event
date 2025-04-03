@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 
 import { IHelpRequest } from '../../types/IHelpRequest';
 import CardItem from '../CardItem/CardItem';
-import ScrollAndSwipeHandler from '../ScrollAndSwipeWrapper/ScrollAndSwipeWrapper';
+import ScrollAndSwipeWrapper from '../ScrollAndSwipeWrapper/ScrollAndSwipeWrapper';
 
 interface IRequestsProps {
   helpRequests: IHelpRequest[];
@@ -20,7 +20,7 @@ const CardList: FC<IRequestsProps> = (requests) => {
 
   return (
     <Box display={'flex'} justifyContent={'center'} width={'100%'}>
-      <ScrollAndSwipeHandler
+      <ScrollAndSwipeWrapper
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         totalPages={totalPages}
@@ -46,7 +46,7 @@ const CardList: FC<IRequestsProps> = (requests) => {
             );
           })}
         </Grid>
-      </ScrollAndSwipeHandler>
+      </ScrollAndSwipeWrapper>
     </Box>
   );
 };

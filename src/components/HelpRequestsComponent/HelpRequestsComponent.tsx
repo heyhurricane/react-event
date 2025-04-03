@@ -10,21 +10,21 @@ interface IRequestsProps {
   helpRequests: IHelpRequest[];
   customNumberItemsPerPage?: number;
   noSearchResult: boolean;
-  setIsResetFilters: React.Dispatch<React.SetStateAction<boolean>>;
+  setShouldResetPagination: React.Dispatch<React.SetStateAction<boolean>>;
   isHelpRequestsError: boolean;
   isFavouriteRequestsError?: boolean;
   isLoading: boolean;
-  isResetFilters: boolean;
+  shouldResetPagination: boolean;
 }
 
 const HelpRequestsComponent: FC<IRequestsProps> = ({
   helpRequests,
   customNumberItemsPerPage,
   noSearchResult,
-  setIsResetFilters,
+  setShouldResetPagination,
   isHelpRequestsError,
   isLoading,
-  isResetFilters,
+  shouldResetPagination,
   isFavouriteRequestsError,
 }) => {
   const { viewMode, handleViewChange } = useViewMode();
@@ -46,10 +46,10 @@ const HelpRequestsComponent: FC<IRequestsProps> = ({
         helpRequests={helpRequests}
         customNumberItemsPerPage={customNumberItemsPerPage}
         notFoundResult={noSearchResult}
-        setIsResetFilters={setIsResetFilters}
+        setShouldResetPagination={setShouldResetPagination}
         isHelpRequestsError={isHelpRequestsError}
         isLoading={isLoading}
-        isResetFilters={isResetFilters}
+        shouldResetPagination={shouldResetPagination}
         isFavouriteRequestsError={isFavouriteRequestsError}
       />
     </Box>

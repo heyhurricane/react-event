@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 interface IUseParseURLProps {
   searchTerm?: string;
   selectedOptions?: string[];
-  selectedDate?: string | null;
+  selectedDate?: string | null | undefined;
   currentPage?: number;
   setSearchTerm?: React.Dispatch<React.SetStateAction<string>>;
   setSelectedOptions?: React.Dispatch<React.SetStateAction<string[]>>;
@@ -77,15 +77,19 @@ const useParseURL = (props: IUseParseURLProps) => {
     const updateSelectedOptionsURL = () => {
       if (selectedOptions) {
         params.delete('selectedOption');
-        selectedOptions.forEach((option) => params.append('selectedOption', option));
-      } else {
-        params.delete('selectedOption');
+        selectedOptions.forEach((option) => {
+          params.append('selectedOption', option);
+        });
       }
     };
 
     const updateSelectedDateURL = () => {
-      if (selectedDate) params.set('selectedDate', selectedDate);
-      else if (selectedDate === null || undefined) params.delete('selectedDate');
+      if (selectedDate !== undefined || null) {
+        params.delete('selectedDate');
+      }
+      if (selectedDate) {
+        params.set('selectedDate', selectedDate);
+      }
     };
 
     const updateCurrentPageURL = () => {

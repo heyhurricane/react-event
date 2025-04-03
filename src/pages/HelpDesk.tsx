@@ -16,7 +16,7 @@ import { resetFavouriteRequestsError } from '../store/userFavourites/userFavouri
 const HelpDesk: FC = () => {
   const { helpRequestsList, hasHelpRequests, isHelpRequestsLoading, isHelpRequestsError, isFavouriteRequestsError } =
     useUserHelpRequests();
-  const [isResetFilters, setIsResetFilters] = useState(false);
+  const [shouldResetPagination, setShouldResetPagination] = useState(false);
 
   const dispatch = useAppDispatch();
   const {
@@ -27,7 +27,7 @@ const HelpDesk: FC = () => {
     setSearchTerm,
     setSelectedOptions,
     setSelectedDate,
-  } = useFilters({ helpRequestsList, setIsResetFilters });
+  } = useFilters({ helpRequestsList, setShouldResetPagination });
 
   const [openFilterModal, setOpenFilterModal] = useState(false);
   const [theme] = useMode();
@@ -116,11 +116,11 @@ const HelpDesk: FC = () => {
                 helpRequests={dataToDisplay}
                 customNumberItemsPerPage={itemsPerPage}
                 noSearchResult={noSearchResult}
-                setIsResetFilters={setIsResetFilters}
+                setShouldResetPagination={setShouldResetPagination}
                 isFavouriteRequestsError={isFavouriteRequestsError}
                 isHelpRequestsError={isHelpRequestsError}
                 isLoading={isHelpRequestsLoading}
-                isResetFilters={isResetFilters}
+                shouldResetPagination={shouldResetPagination}
               />
             </Paper>
           </Grid2>

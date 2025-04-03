@@ -17,9 +17,9 @@ interface IViewHelpRequests {
   helpRequests: IHelpRequest[];
   customNumberItemsPerPage?: number;
   notFoundResult: boolean;
-  setIsResetFilters?: React.Dispatch<React.SetStateAction<boolean>>;
+  setShouldResetPagination?: React.Dispatch<React.SetStateAction<boolean>>;
   isLoading: boolean;
-  isResetFilters?: boolean;
+  shouldResetPagination?: boolean;
   isHelpRequestsError: boolean;
   isFavouriteRequestsError?: boolean;
 }
@@ -29,9 +29,9 @@ const ViewHelpRequests: FC<IViewHelpRequests> = ({
   helpRequests,
   customNumberItemsPerPage,
   notFoundResult,
-  setIsResetFilters,
+  setShouldResetPagination,
   isLoading,
-  isResetFilters,
+  shouldResetPagination,
   isHelpRequestsError,
   isFavouriteRequestsError,
 }) => {
@@ -82,13 +82,13 @@ const ViewHelpRequests: FC<IViewHelpRequests> = ({
   }
 
   useEffect(() => {
-    if (isResetFilters && setIsResetFilters && !isInitialReset) {
+    if (setShouldResetPagination && shouldResetPagination && !isInitialReset) {
       setCurrentPage(1);
-      setIsResetFilters(false);
+      setShouldResetPagination(false);
     } else if (isInitialReset) {
       setIsInitialReset(false);
     }
-  }, [isResetFilters]);
+  }, [shouldResetPagination]);
 
   return (
     <Box sx={{ height: '100%' }}>

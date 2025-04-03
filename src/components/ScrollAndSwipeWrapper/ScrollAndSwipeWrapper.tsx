@@ -4,7 +4,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { IHelpRequest } from '../../types/IHelpRequest';
 import './ScrollAndSwipeAnimations.css';
 
-interface IScrollAndSwipeHandlerProps {
+interface IScrollAndSwipeWrapperProps {
   currentPage: number;
   totalPages: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
@@ -14,7 +14,7 @@ interface IScrollAndSwipeHandlerProps {
   children: React.ReactNode;
 }
 
-const ScrollAndSwipeWrapper: FC<IScrollAndSwipeHandlerProps> = (props) => {
+const ScrollAndSwipeWrapper: FC<IScrollAndSwipeWrapperProps> = (props) => {
   const { currentPage, totalPages, setCurrentPage, helpRequests, cooldownDuration, viewMode, children } = props;
 
   const [animationState, setAnimationState] = useState<'enter' | 'exit' | 'none'>('none');
@@ -30,10 +30,14 @@ const ScrollAndSwipeWrapper: FC<IScrollAndSwipeHandlerProps> = (props) => {
 
     isCooldown.current = true;
 
-    if (e.deltaY > 0 && currentPage < totalPages) {
+    const isTrackpad = Math.abs(e.deltaY) < 100;
+
+    const adjustedDeltaY = isTrackpad ? e.deltaY / 5 : e.deltaY;
+
+    if (adjustedDeltaY > 0 && currentPage < totalPages) {
       setAnimationState('exit');
       setCurrentPage((prevPage) => prevPage + 1);
-    } else if (e.deltaY < 0 && currentPage > 1) {
+    } else if (adjustedDeltaY < 0 && currentPage > 1) {
       setAnimationState('exit');
       setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
     }
