@@ -14,7 +14,7 @@ interface ICalendarProps {
 
 const Calendar: FC<ICalendarProps> = ({ selectedDate, setSelectedDate }) => {
   const [cleared, setCleared] = React.useState<boolean>(false);
-
+  console.log('<Calendar /> Render');
   const handleDateChange = (date: Dayjs | null) => {
     if (date) {
       const formattedDate = dayjs(date).format('YYYY-MM-DD');

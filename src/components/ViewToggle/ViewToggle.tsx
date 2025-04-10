@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import { ToggleButtonGroup, ToggleButton } from '@mui/material';
 import GridOnIcon from '@mui/icons-material/GridOn';
 import ListAltRoundedIcon from '@mui/icons-material/ListAltRounded';
@@ -12,11 +12,14 @@ interface IViewToggleProps {
 }
 
 const ViewToggle: FC<IViewToggleProps> = ({ viewMode, onOptionChange }) => {
-  const handleViewClick = (event: React.MouseEvent<HTMLElement>, newViewMode: VIEW_TOGGLE_OPTIONS | null) => {
-    if (newViewMode) {
-      onOptionChange(newViewMode);
-    }
-  };
+  const handleViewClick = useCallback(
+    (event: React.MouseEvent<HTMLElement>, newViewMode: VIEW_TOGGLE_OPTIONS | null) => {
+      if (newViewMode) {
+        onOptionChange(newViewMode);
+      }
+    },
+    [onOptionChange],
+  );
 
   return (
     <ToggleButtonGroup size='small' value={viewMode} exclusive onChange={handleViewClick} aria-label='View mode'>

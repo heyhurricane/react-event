@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 
 import { useMode } from '../theme';
 
-import HeaderNavigationApp from './Header/Header';
+import Header from './Header/Header';
 import Footer from './Footer/Footer';
 
 const Wrapper = ({ children }) => {
@@ -16,7 +16,7 @@ const Wrapper = ({ children }) => {
       display={'flex'}
       flexDirection={'column'}
     >
-      <HeaderNavigationApp />
+      <Header />
       <Box
         margin={'0 calc(8.1rem + 0.109375 * (100vw - 192rem))'}
         flexGrow={'1'}

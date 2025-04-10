@@ -12,8 +12,6 @@ const ProtectedRoute: FC<Props> = ({ component }) => {
   const user = useAppSelector((store) => store.auth.isAuthenticated);
   const location = useLocation();
 
-  console.log('ProtectedRoute render', user);
-
   if (!user) {
     return <Navigate to={APP_ROUTE.Login} state={{ from: location }} />;
   }

@@ -27,6 +27,7 @@ interface ICardItemProps {
 }
 
 const VerticalCard: FC<ICardItemProps> = (props) => {
+  console.log('<VerticalCard/> Render');
   const { helpRequest } = props;
   const userFavouritesIDs = useAppSelector(getFavouriteRequestsIDs);
   const { handleContributeToRequest } = useContributeToRequest(helpRequest);

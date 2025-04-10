@@ -1,5 +1,5 @@
 import { Box, Button, Paper, Typography } from '@mui/material';
-import { FC } from 'react';
+import { FC, memo, useCallback } from 'react';
 
 import { filterOptionsConst } from '../../constants/filterOptionsConst';
 import { IFilterProps } from '../../types/IFilterOption';
@@ -9,19 +9,16 @@ import Calendar from './Calendar';
 import AccordionCheckboxes from './AccordionCheckboxes';
 import StandardCheckboxes from './StandardCheckboxes';
 
-const Filters: FC<IFilterProps> = ({ selectedOptions, selectedDate, setSelectedOptions, setSelectedDate }) => {
+const FiltersBlock: FC<IFilterProps> = ({ selectedOptions, selectedDate, setSelectedOptions, setSelectedDate }) => {
   const [theme] = useMode();
-
+  console.log('<FiltersBlock /> Render');
   // Toggle checkbox filter
-  const toggleFilterOption = (props: string): void => {
-    setSelectedOptions((prev) => {
-      if (prev.includes(props)) {
-        return prev.filter((o) => o !== props);
-      } else {
-        return [...prev, props];
-      }
-    });
-  };
+  const toggleFilterOption = useCallback(
+    (props: string): void => {
+      setSelectedOptions((prev) => (prev.includes(props) ? prev.filter((o) => o !== props) : [...prev, props]));
+    },
+    [setSelectedOptions],
+  );
 
   const handleReset = () => {
     setSelectedOptions([]);
@@ -106,4 +103,5 @@ const Filters: FC<IFilterProps> = ({ selectedOptions, selectedDate, setSelectedO
   );
 };
 
+const Filters = memo(FiltersBlock);
 export default Filters;

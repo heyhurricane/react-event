@@ -1,5 +1,5 @@
 // types
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Box, Checkbox, FormControlLabel, Typography } from '@mui/material';
 
 import { FilterOption } from '../../types/IFilterOption';
@@ -12,12 +12,13 @@ interface IStandardCheckboxesProps {
   toggleFilterOption: (props: string) => void;
 }
 
-const StandardCheckboxes: FC<IStandardCheckboxesProps> = ({
+const StandardCheckboxesBlock: FC<IStandardCheckboxesProps> = ({
   item: { title, options },
   index,
   selectedOptions,
   toggleFilterOption,
 }) => {
+  console.log('<StandardCheckboxesBlock /> Render');
   const labelStyles = {
     width: 'fit-content',
     hyphens: 'auto',
@@ -51,4 +52,5 @@ const StandardCheckboxes: FC<IStandardCheckboxesProps> = ({
   );
 };
 
+const StandardCheckboxes = memo(StandardCheckboxesBlock);
 export default StandardCheckboxes;

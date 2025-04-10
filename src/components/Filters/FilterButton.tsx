@@ -10,7 +10,7 @@ interface IFilterButtonProps {
 
 const FilterButton: FC<IFilterButtonProps> = ({ onClick }) => {
   const [theme] = useMode();
-
+  console.log('<FilterButton /> Render');
   return (
     <Paper>
       <Button

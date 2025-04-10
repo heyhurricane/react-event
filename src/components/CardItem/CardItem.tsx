@@ -11,6 +11,7 @@ interface ICardItemProps {
 }
 
 const CardItem: FC<ICardItemProps> = (props) => {
+  console.log('<CardItem /> Render');
   const { helpRequest, orientation } = props;
 
   return orientation !== 'horizontal' ? (

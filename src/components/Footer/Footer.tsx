@@ -4,7 +4,6 @@ import { useMode } from '../../theme';
 
 const Footer = () => {
   const [theme] = useMode();
-
   return (
     <Box
       display={'flex'}

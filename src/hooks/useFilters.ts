@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { applyDate, applyFilter, applySearch } from '../utils/filterUtils';
 import { IHelpRequest } from '../types/IHelpRequest';
@@ -14,7 +14,6 @@ export function useFilters({ helpRequestsList, setIsResetFilters }: IUseFilterPr
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
-  const [filteredData, setFilteredData] = useState<IHelpRequest[]>([]);
 
   useParseURL({
     searchTerm,
@@ -25,10 +24,9 @@ export function useFilters({ helpRequestsList, setIsResetFilters }: IUseFilterPr
     setSelectedDate,
   });
 
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     if (!helpRequestsList || helpRequestsList.length === 0) {
-      setFilteredData([]);
-      return;
+      return [];
     }
 
     let requestedData = helpRequestsList;
@@ -45,13 +43,19 @@ export function useFilters({ helpRequestsList, setIsResetFilters }: IUseFilterPr
       requestedData = applyDate(requestedData, selectedDate);
     }
 
-    setFilteredData(requestedData);
-    setIsResetFilters(true);
-  };
-
-  useEffect(() => {
-    applyFilters();
+    return requestedData;
+    //setIsResetFilters(true);
   }, [helpRequestsList, searchTerm, selectedOptions, selectedDate]);
+
+  //useEffect(() => {
+  //  applyFilters();
+  //}, [helpRequestsList, searchTerm, selectedOptions, selectedDate]);
+
+  // Кешируем отфильтрованные данные
+  const filteredData = useMemo(() => applyFilters(), [applyFilters]);
+
+  // Запоминаем setSelectedOptions, чтобы не пересоздавался в FiltersBlock
+  const stableSetSelectedOptions = useCallback(setSelectedOptions, []);
 
   return {
     searchTerm,
@@ -59,7 +63,7 @@ export function useFilters({ helpRequestsList, setIsResetFilters }: IUseFilterPr
     selectedDate,
     filteredData,
     setSearchTerm,
-    setSelectedOptions,
+    setSelectedOptions: stableSetSelectedOptions,
     setSelectedDate,
   };
 }

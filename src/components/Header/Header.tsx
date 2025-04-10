@@ -1,5 +1,6 @@
 import { AppBar, Box, Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { memo } from 'react';
 
 import { APP_ROUTE } from '../../constants/globalConsts';
 import { useAppSelector } from '../../hooks/useAppSelector';
@@ -9,7 +10,8 @@ import LogInButton from './elements/LogInButton';
 import ImageAvatar from './elements/ImageAvatar';
 import Logo from './elements/Logo';
 
-const Header = () => {
+const HeaderBlock = () => {
+  console.log('<Header/> Render');
   const navigate = useNavigate();
   const isAuthenticated = useAppSelector((store) => store.auth.isAuthenticated);
   const [theme] = useMode();
@@ -88,4 +90,5 @@ const Header = () => {
   );
 };
 
+const Header = memo(HeaderBlock);
 export default Header;

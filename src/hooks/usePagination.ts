@@ -9,7 +9,6 @@ interface IUsePagination {
 
 export function usePagination({ quantityHelpRequests, itemsPerPage }: IUsePagination) {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  // Rewrite currentPage with data from URL
   useParseURL({
     currentPage,
     setCurrentPage,

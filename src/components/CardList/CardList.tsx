@@ -17,7 +17,7 @@ interface IRequestsProps {
 
 const CardList: FC<IRequestsProps> = (requests) => {
   const { helpRequests, viewMode, totalPages, currentPage, setCurrentPage, scrollCooldownDuration } = requests;
-
+  console.log('<CardList /> Render');
   return (
     <Box display={'flex'} justifyContent={'center'} width={'100%'}>
       <ScrollAndSwipeHandler

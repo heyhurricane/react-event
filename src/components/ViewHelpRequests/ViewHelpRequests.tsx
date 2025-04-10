@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useState } from 'react';
+import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { Box, useMediaQuery } from '@mui/material';
 
 import { IHelpRequest } from '../../types/IHelpRequest';
@@ -51,26 +51,27 @@ const ViewHelpRequests: FC<IViewHelpRequests> = ({
     return helpRequests.slice(indexOfFirstItem, indexOfLastItem);
   }, [helpRequests, indexOfFirstItem, indexOfLastItem]);
 
-  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setCurrentPage(value);
-  };
+  const handlePageChange = useCallback(
+    (event: React.ChangeEvent<unknown>, value: number) => {
+      setCurrentPage(value);
+    },
+    [setCurrentPage],
+  );
 
-  const renderErrorMessage = () => {
+  const renderErrorMessage = useCallback(() => {
     if (isHelpRequestsError || isFavouriteRequestsError) {
       return <Error />;
     }
     if (isLoading) {
       return <Loading />;
     }
-
     if (notFoundResult) {
       return <NotFoundResult />;
     }
-
     return null;
-  };
+  }, [isHelpRequestsError, isFavouriteRequestsError, isLoading, notFoundResult]);
 
-  const errorMessage = renderErrorMessage();
+  const errorMessage = useMemo(() => renderErrorMessage(), [renderErrorMessage]);
 
   let paginationSize;
   if (isSmallScreen) {

@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState, useCallback } from 'react';
 
 import { IHelpRequest } from '../../types/IHelpRequest';
 import './ScrollAndSwipeAnimations.css';
@@ -23,50 +23,56 @@ const ScrollAndSwipeWrapper: FC<IScrollAndSwipeHandlerProps> = (props) => {
 
   const isCooldown = useRef(false);
 
-  const handleWheel = (e: WheelEvent) => {
-    e.preventDefault();
+  const handleWheel = useCallback(
+    (e: WheelEvent) => {
+      e.preventDefault();
 
-    if (isCooldown.current) return;
+      if (isCooldown.current) return;
 
-    isCooldown.current = true;
+      isCooldown.current = true;
 
-    if (e.deltaY > 0 && currentPage < totalPages) {
-      setAnimationState('exit');
-      setCurrentPage((prevPage) => prevPage + 1);
-    } else if (e.deltaY < 0 && currentPage > 1) {
-      setAnimationState('exit');
-      setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-    }
+      if (e.deltaY > 0 && currentPage < totalPages) {
+        setAnimationState('exit');
+        setCurrentPage((prevPage) => prevPage + 1);
+      } else if (e.deltaY < 0 && currentPage > 1) {
+        setAnimationState('exit');
+        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+      }
 
-    setTimeout(() => {
-      isCooldown.current = false;
-    }, cooldownDuration);
-  };
+      setTimeout(() => {
+        isCooldown.current = false;
+      }, cooldownDuration);
+    },
+    [currentPage, totalPages, cooldownDuration, setCurrentPage],
+  );
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartRef.current = e.touches[0].clientX;
   };
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (isCooldown.current) return;
+  const handleTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      if (isCooldown.current) return;
 
-    const touchEnd = e.changedTouches[0].clientX;
-    const swipeThreshold = 50;
+      const touchEnd = e.changedTouches[0].clientX;
+      const swipeThreshold = 50;
 
-    isCooldown.current = true;
+      isCooldown.current = true;
 
-    if (touchStartRef.current - touchEnd > swipeThreshold && currentPage < totalPages) {
-      setAnimationState('exit');
-      setCurrentPage((prevPage) => prevPage + 1);
-    } else if (touchEnd - touchStartRef.current > swipeThreshold && currentPage > 1) {
-      setAnimationState('exit');
-      setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-    }
+      if (touchStartRef.current - touchEnd > swipeThreshold && currentPage < totalPages) {
+        setAnimationState('exit');
+        setCurrentPage((prevPage) => prevPage + 1);
+      } else if (touchEnd - touchStartRef.current > swipeThreshold && currentPage > 1) {
+        setAnimationState('exit');
+        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+      }
 
-    setTimeout(() => {
-      isCooldown.current = false;
-    }, cooldownDuration);
-  };
+      setTimeout(() => {
+        isCooldown.current = false;
+      }, cooldownDuration);
+    },
+    [currentPage, totalPages, cooldownDuration, setCurrentPage],
+  );
 
   useEffect(() => {
     const listElement = listRef.current;

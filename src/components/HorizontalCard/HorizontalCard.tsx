@@ -15,6 +15,7 @@ interface ICardItemProps {
 }
 
 const HorizontalCard: FC<ICardItemProps> = (props) => {
+  console.log('<HorizontalCard/> Render');
   const { helpRequest } = props;
   const userFavouritesIDs = useAppSelector(getFavouriteRequestsIDs);
 

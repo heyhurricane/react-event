@@ -1,5 +1,5 @@
 import { Box, Pagination as MuiPagination } from '@mui/material';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface IPagination {
   totalPages: number;
@@ -18,6 +18,7 @@ const Pagination: FC<IPagination> = ({
   hideNextButton,
   hidePrevButton,
 }) => {
+  console.log('<Pagination/> Render');
   return (
     <Box
       sx={{
@@ -39,4 +40,4 @@ const Pagination: FC<IPagination> = ({
   );
 };
 
-export default Pagination;
+export default memo(Pagination);

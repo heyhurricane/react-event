@@ -8,7 +8,7 @@ import {
   FormControlLabel,
   Typography,
 } from '@mui/material';
-import React, { FC, useState } from 'react';
+import React, { FC, memo, useState } from 'react';
 
 import { FilterOption } from '../../types/IFilterOption';
 
@@ -21,7 +21,7 @@ interface IAccordionCheckboxesProps {
 
 const AccordionCheckboxes: FC<IAccordionCheckboxesProps> = ({ item, index, selectedOptions, toggleFilterOption }) => {
   const [expanded, setExpanded] = useState<string | false>(false);
-
+  console.log('<AccordionCheckboxes /> Render');
   const toggleAccordion = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -95,4 +95,4 @@ const AccordionCheckboxes: FC<IAccordionCheckboxesProps> = ({ item, index, selec
   );
 };
 
-export default AccordionCheckboxes;
+export default memo(AccordionCheckboxes);

@@ -15,6 +15,7 @@ interface IFavouriteButton {
 }
 
 const FavouriteButton: FC<IFavouriteButton> = (props) => {
+  console.log('<FavouriteButton /> Render');
   const { helpRequest, favouriteRequestsIDs, isLoading, setIsLoading } = props;
   const { handleAddToFavourites, handleRemoveFavourite } = useFavourites();
   const isFavourite = favouriteRequestsIDs.includes(helpRequest.id);

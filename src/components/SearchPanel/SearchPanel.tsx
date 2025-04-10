@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useRef, useState } from 'react';
+import { FC, memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Box, InputBase, Paper, Stack, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -23,11 +23,11 @@ const SearchPanel: FC<ISearchProps> = ({ searchTerm, setSearchTerm }) => {
 
   const debouncedSearch = useRef<(value: string) => void>(debouncedFunction(handleSearch, 250));
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     setInputValue(newValue);
     debouncedSearch.current?.(newValue);
-  };
+  }, []);
 
   useEffect(() => {
     setInputValue(searchTerm);
@@ -87,4 +87,4 @@ const SearchPanel: FC<ISearchProps> = ({ searchTerm, setSearchTerm }) => {
   );
 };
 
-export default SearchPanel;
+export default memo(SearchPanel);

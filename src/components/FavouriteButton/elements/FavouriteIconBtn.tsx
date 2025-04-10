@@ -6,6 +6,7 @@ import { IFavouriteButton } from '../../../types/IFavouriteButton';
 
 const FavouriteIconBtn = forwardRef<HTMLDivElement, IFavouriteButton>(
   ({ handleToggleFavourite, isFavourite, ariaLabel, isLoading, ...rest }, ref) => {
+    console.log('<FavouriteIconBtn /> Render');
     return (
       <Box ref={ref} {...rest}>
         <IconButton
