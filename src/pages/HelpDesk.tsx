@@ -12,6 +12,7 @@ import { useFilters } from '../hooks/useFilters';
 import { useResponsiveItemsPerPage } from '../hooks/useResponsiveItemsPerPage';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import { resetFavouriteRequestsError } from '../store/userFavourites/userFavouritesSlice';
+import useOpenFilterModal from '../hooks/useOpenFilterModal';
 
 const HelpDesk: FC = () => {
   const { helpRequestsList, hasHelpRequests, isHelpRequestsLoading, isHelpRequestsError, isFavouriteRequestsError } =
@@ -29,20 +30,12 @@ const HelpDesk: FC = () => {
     setSelectedDate,
   } = useFilters({ helpRequestsList, setShouldResetPagination });
 
-  const [openFilterModal, setOpenFilterModal] = useState(false);
+  const { openFilterModal, handleOpenFilterModal, handleCloseFilterModal } = useOpenFilterModal();
   const [theme] = useMode();
   const itemsPerPage = useResponsiveItemsPerPage();
 
   const dataToDisplay = filteredData ? filteredData : helpRequestsList;
   const noSearchResult = hasHelpRequests && filteredData.length === 0;
-
-  const handleOpenFilterModal = () => {
-    setOpenFilterModal(true);
-  };
-
-  const handleCloseFilterModal = () => {
-    setOpenFilterModal(false);
-  };
 
   useEffect(() => {
     return () => {

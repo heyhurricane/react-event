@@ -2,7 +2,12 @@ import { Box, Tabs, useMediaQuery } from '@mui/material';
 
 import CustomTab from './CustomTab';
 
-const TabsProfile = ({ value, setValue }) => {
+interface ITabsProfile {
+  value: number;
+  setValue: (numberTab: number) => void;
+}
+
+const TabsProfile: React.FC<ITabsProfile> = ({ value, setValue }) => {
   const isSmallScreen = useMediaQuery('(max-width:400px)');
 
   function handleChange(e: React.SyntheticEvent, numberTab: number) {
